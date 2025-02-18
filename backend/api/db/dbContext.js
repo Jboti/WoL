@@ -27,10 +27,10 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-const {User, Character, User_Character} = require('../models')(db.sequelize, DataTypes)
+const {User, Character, UserCharacter} = require('../models')(db.sequelize, DataTypes)
 db.user = User
 db.character = Character
-db.user_character = User_Character
+db.userCharacter = UserCharacter
 
 db.sequelize.sync({alter: true})
 

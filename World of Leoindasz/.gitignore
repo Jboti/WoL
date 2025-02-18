@@ -1,0 +1,37 @@
+# Unity által generált fájlok (nem kell verziókövetni)
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]serSettings/
+MemoryCaptures/
+
+# Visual Studio és JetBrains Rider által generált fájlok
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# MacOS és Linux felesleges fájlok
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+*.swo
+*.sublime-workspace
+
+# Pakolt assetek és cache
+*.apk
+*.aab
+*.unitypackage

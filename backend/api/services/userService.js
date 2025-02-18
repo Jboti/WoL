@@ -14,6 +14,11 @@ class userService
     async getUserFromUsername(username){
         return await userRepository.getUserFromUsername(username)
     }
+
+    async getUserCharacters(id)
+    {
+        return await userRepository.getUserCharacters(id)
+    }
 }
 
 module.exports = new userService()
