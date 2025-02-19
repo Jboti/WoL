@@ -23,22 +23,25 @@ class userRepository{
         )
     }
 
-    async getUserCharacters(id){
-        return await this.UserCharacter.findAll(
-            {
-                where:{
-                    user_id:id
-                },
-                attributes: ['lvl','attack_power'],
-                include: [
-                    {
-                        model: this.Character,
-                        attributes: ['name','description']
-                    }
-                ]
-            }
-        )
+    async getUserCharacters(id) {
+        return await this.UserCharacter.findAll({
+            where: { user_id: id },
+            attributes: ['id','name', 'lvl', 'attack_power'],
+            include: [
+                {
+                    model: this.Character,
+                    attributes: ['characterName', 'description']
+                }
+            ]
+        })
     }
+    
+    async createNewCharacter(user_character){
+        const newCharacter = await this.UserCharacter.create(user_character)
+        await newCharacter.save()
+        return newCharacter
+    }
+
 }
 
 module.exports = new userRepository(db)

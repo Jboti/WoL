@@ -5,9 +5,11 @@ app.use(express.urlencoded({extended:true}))
 
 //ROUTES
 const userRoutes = require('./api/routes/userRoutes')
+const characterRoutes = require('./api/routes/characterRoutes')
 const errorHandler = require('./api/middlewares/errorHandler')
 
 app.use('/api/v1',userRoutes)
+app.use('/api/v1',characterRoutes)
 
 
 app.use(errorHandler.notFoundError)

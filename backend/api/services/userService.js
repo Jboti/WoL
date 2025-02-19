@@ -19,6 +19,18 @@ class userService
     {
         return await userRepository.getUserCharacters(id)
     }
+
+    async createNewCharacter(uid,cid,name)
+    {
+        const character = {
+            id: null,
+            user_id: uid,
+            character_id: cid,
+            name: name,
+        }
+        return await userRepository.createNewCharacter(character)
+    }
+
 }
 
 module.exports = new userService()

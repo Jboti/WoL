@@ -37,7 +37,7 @@ public class AuthUIManager : MonoBehaviour
     
     public Button ExitButton;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         ShowLoginPanel();
@@ -87,6 +87,8 @@ public class AuthUIManager : MonoBehaviour
     public class ResponseWrapper
     {
         public string error;
+        public string id;
+        public string username;
     }
 
     #region login
@@ -154,14 +156,20 @@ public class AuthUIManager : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
+            var responseWrapper = JsonUtility.FromJson<ResponseWrapper>(request.downloadHandler.text);
+
+            PlayerPrefs.SetString("id", responseWrapper.id);
+            PlayerPrefs.SetString("name", responseWrapper.username);
+            PlayerPrefs.Save();
+
             loadingLayer.SetActive(false);
             SetButtonsInteractable(true);
+
             SceneManager.LoadScene("CharacterSelectionScene");
 
         }
         else
         {
-            
             var responseWrapper = JsonUtility.FromJson<ResponseWrapper>(request.downloadHandler.text);
             LoginErrorText.text = responseWrapper.error;
             loadingLayer.SetActive(false);

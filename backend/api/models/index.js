@@ -3,16 +3,14 @@ module.exports = (sequelize,DataTypes) => {
     const Character = require('./Character')(sequelize,DataTypes)
     const UserCharacter = require('./UserCharacter')(sequelize,DataTypes)
 
-    User.belongsToMany(Character,{
-        through:UserCharacter,
-        foreignKey:'user_id',
-        otherKey:'character_id'
-    })
-    Character.belongsToMany(User,{
-        through:UserCharacter,
-        foreignKey:'character_id',
-        otherKey:'user_id'
-})
+    // User -> UserCharacter (egy felhasználónak több karaktere lehet)
+    User.hasMany(UserCharacter, { foreignKey: 'user_id' });
+    UserCharacter.belongsTo(User, { foreignKey: 'user_id' });
+
+    // Character -> UserCharacter (egy karaktertömb több user karaktert is tartalmazhat)
+    Character.hasMany(UserCharacter, { foreignKey: 'character_id' });
+    UserCharacter.belongsTo(Character, { foreignKey: 'character_id' });
+
 
     return { User, Character, UserCharacter }
 }

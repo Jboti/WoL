@@ -3,11 +3,11 @@ const db = require('../db/dbContext')
 class characterRepository
 {
     constructor(db) {
-        this.Character = db.Character
+        this.Character = db.character
     }
 
     async getAllCharacters() {
-        return await this.Character.findAll()
+        return await this.Character.findAll({})
     }
 }
 
